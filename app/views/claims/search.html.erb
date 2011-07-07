@@ -1,0 +1,19 @@
+<h1>Claims Search</h1>
+
+<%= render :partial => 'search_form' %>
+
+<% if params[:query] %>
+
+  <% if @claims.blank? %>
+    
+    <h3>No Claims Found</h3>
+
+  <% else %>
+
+    <h3><%= @claims.size %> Claim(s) Found</h3>
+
+    <%= render :partial => 'claims_index' %>
+    
+  <% end %>
+  
+<% end %>

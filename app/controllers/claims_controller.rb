@@ -3,7 +3,8 @@ class ClaimsController < ApplicationController
   # GET /claims.xml
   def index
     @claims = Claim.all
-
+    @query = {}
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @claims }
@@ -80,4 +81,21 @@ class ClaimsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def search
+    @claims = []
+    
+    if params[:query]
+      @query = {}
+      @query[:postcode] = params[:query][:postcode] if params[:query][:postcode]
+      @claims = Claim.where(claim_location_postcode: /#{@query[:postcode]}/i)
+    end
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @claims }
+    end
+  end
+
 end
+

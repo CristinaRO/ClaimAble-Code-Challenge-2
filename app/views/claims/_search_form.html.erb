@@ -1,0 +1,13 @@
+<div>
+<%= form_tag url_for(:controller => 'claims', :action => 'search'), :class => 'search', :method => :get do %>
+<dl>
+  <dt>
+    <label for="claims_search_by_postcode">Claim location postcode</label>
+  </dt>
+  <dd>
+    <%= text_field_tag('query[postcode]', @query ? @query[:postcode] : "", { :id => 'claims_search_by_postcode' })  %>
+  </dd>
+</dl>
+  <span class="submit"><%= submit_tag 'Search claims', :name => nil %></span>
+<% end %>
+</div>
