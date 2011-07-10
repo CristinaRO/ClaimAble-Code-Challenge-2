@@ -14,6 +14,5 @@ class Claim
                           attrs[:customer_name].blank? && attrs[:customer_postcode].blank? &&
                           attrs[:customer_phone].blank? && attrs[:customer_dob].blank?
                         }
-    }
-  
+    }  
 end

@@ -43,6 +43,11 @@ class ClaimsController < ApplicationController
   def create
     @claim = Claim.new(params[:claim])
 
+    if !Claim.where(:claim_location_postcode => params[:claim][:claim_location_postcode], :created_at => {"$gte" => 6.months.ago}).empty?
+      @claim.errors.add(:base, "Another claim using this location postcode was created within the last 6 months!")
+      render :action => "new" and return
+    end
+    
     respond_to do |format|
       if @claim.save
         format.html { redirect_to(@claim, :notice => 'Claim was successfully created.') }
