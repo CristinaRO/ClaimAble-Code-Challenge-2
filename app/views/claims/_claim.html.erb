@@ -1,0 +1,51 @@
+<p>
+  <b>Claim type:</b>
+  <%= claim.claim_type %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= claim.active %>
+</p>
+
+<p>
+  <b>Claim location postcode:</b>
+  <%= claim.claim_location_postcode %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= claim.cost %>
+</p>
+
+<p>
+  <b>Date of loss:</b>
+  <%= claim.date_of_loss %>
+</p>
+
+<p>Customers</p>
+<% claim.customers.each do |customer| %>
+  <p>
+    <b>Customer name:</b>
+    <%= customer.customer_name %>
+  </p>
+
+  <p>
+    <b>Customer postcode:</b>
+    <%= customer.customer_postcode %>
+  </p>
+
+  <p>
+    <b>Customer phone:</b>
+    <%= customer.customer_phone %>
+  </p>
+
+  <p>
+    <b>Customer dob:</b>
+    <%= customer.customer_dob %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_claim_path(claim) %> |
+<%= link_to 'Show', claim_path(claim) %> | 
+<%= link_to 'Destroy', claim, :confirm => 'Are you sure?', :method => :delete %>

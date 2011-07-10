@@ -1,8 +1,12 @@
 ClaimAbleCodeChallenge::Application.routes.draw do
   resources :claims do
+    
     collection do
       get :search
     end
+    
+    resources :customers
+    
   end
 
   # The priority is based upon order of creation:

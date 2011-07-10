@@ -26,7 +26,7 @@ class ClaimsController < ApplicationController
   # GET /claims/new.xml
   def new
     @claim = Claim.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @claim }
@@ -87,8 +87,14 @@ class ClaimsController < ApplicationController
     
     if params[:query]
       @query = {}
-      @query[:postcode] = params[:query][:postcode] if params[:query][:postcode]
-      @claims = Claim.where(claim_location_postcode: /#{@query[:postcode]}/i)
+      if !params[:query][:postcode].blank?
+        @query[:postcode] = params[:query][:postcode]
+        @claims = Claim.where(:claim_location_postcode => /#{@query[:postcode]}/i)
+      end
+      if !params[:query][:customer_names].blank?
+        @query[:customer_names] = params[:query][:customer_names]
+        @claims = @claims.empty? ? Claim.where("customers.customer_name" => {"$in" => (@query[:customer_names].split(/,+\s*/))}) : @claims.where("customers.customer_name" => {"$in" => @query[:customer_names].split(/,+\s*/)})
+      end
     end
     
     respond_to do |format|

@@ -7,6 +7,12 @@
   <dd>
     <%= text_field_tag('query[postcode]', @query ? @query[:postcode] : "", { :id => 'claims_search_by_postcode' })  %>
   </dd>
+  <dt>
+    <label for="claims_search_by_customer_names">Customer Name(s)</label>
+  </dt>
+  <dd>
+    <%= text_field_tag('query[customer_names]', @query ? @query[:customer_names] : "", { :id => 'claims_search_by_customer_names' })  %>
+  </dd>
 </dl>
   <span class="submit"><%= submit_tag 'Search claims', :name => nil %></span>
 <% end %>

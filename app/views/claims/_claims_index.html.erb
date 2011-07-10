@@ -1,33 +1,3 @@
-<table>
-  <tr>
-    <th>Claim type</th>
-    <th>Active</th>
-    <th>Claim location postcode</th>
-    <th>Customer name</th>
-    <th>Customer postcode</th>
-    <th>Customer phone</th>
-    <th>Customer dob</th>
-    <th>Cost</th>
-    <th>Date of loss</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @claims.each do |claim| %>
-  <tr>
-    <td><%= claim.claim_type %></td>
-    <td><%= claim.active %></td>
-    <td><%= claim.claim_location_postcode %></td>
-    <td><%= claim.customer_name %></td>
-    <td><%= claim.customer_postcode %></td>
-    <td><%= claim.customer_phone %></td>
-    <td><%= claim.customer_dob %></td>
-    <td><%= claim.cost %></td>
-    <td><%= claim.date_of_loss %></td>
-    <td><%= link_to 'Show', claim %></td>
-    <td><%= link_to 'Edit', edit_claim_path(claim) %></td>
-    <td><%= link_to 'Destroy', claim, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <%= render :partial => 'claim', :locals => {:claim => claim} %>
 <% end %>
-</table>
