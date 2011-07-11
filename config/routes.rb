@@ -6,7 +6,8 @@ ClaimAbleCodeChallenge::Application.routes.draw do
     end
     
     resources :customers
-    
+    resources :notes
+
   end
 
   # The priority is based upon order of creation:

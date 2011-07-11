@@ -58,3 +58,15 @@ div.field, div.actions {
 .fieldgroup {
   border: 1px dotted grey;
 }
+
+.claim {
+  border: 1px solid grey;
+}
+
+.claim dt {
+  font-weight: bold;
+}
+
+dl.customer {
+  border: 1px dotted grey;
+}

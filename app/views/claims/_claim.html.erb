@@ -1,51 +1,59 @@
-<p>
-  <b>Claim type:</b>
-  <%= claim.claim_type %>
-</p>
+<div class="claim">
+<dl>
+  <dt>Claim type:</dt>
+  <dd><%= claim.claim_type %></dd>
 
-<p>
-  <b>Active:</b>
-  <%= claim.active %>
-</p>
+  <dt>Active:</dt>
+  <dd><%= claim.active %></dd>
 
-<p>
-  <b>Claim location postcode:</b>
-  <%= claim.claim_location_postcode %>
-</p>
+  <dt>Claim location postcode:</dt>
+  <dd><%= claim.claim_location_postcode %></dd>
 
-<p>
-  <b>Cost:</b>
-  <%= claim.cost %>
-</p>
+  <dt>Cost:</dt>
+  <dd><%= claim.cost %></dd>
 
-<p>
-  <b>Date of loss:</b>
-  <%= claim.date_of_loss %>
-</p>
+  <dt>Date of loss:</dt>
+  <dd><%= claim.date_of_loss %></dd>
 
-<p>Customers</p>
-<% claim.customers.each do |customer| %>
-  <p>
-    <b>Customer name:</b>
-    <%= customer.customer_name %>
-  </p>
+<% unless claim.customers.empty? %>
+  <dt>Customers</dt>
+  <dd>
+  <% claim.customers.each do |customer| %>
+    <dl class="customer">
+      <dt>Customer name:</dt>
+      <dd><%= customer.customer_name %></dd>
+      
+      <dt>Customer postcode:</dt>
+      <dd><%= customer.customer_postcode %></dd>
 
-  <p>
-    <b>Customer postcode:</b>
-    <%= customer.customer_postcode %>
-  </p>
+      <dt>Customer phone:</dt>
+      <dd><%= customer.customer_phone %></dd>
 
-  <p>
-    <b>Customer phone:</b>
-    <%= customer.customer_phone %>
-  </p>
-
-  <p>
-    <b>Customer dob:</b>
-    <%= customer.customer_dob %>
-  </p>
+      <dt>Customer dob:</dt>
+      <dd><%= customer.customer_dob %></dd>
+    </dl>
+  <% end %>
+  </dd>
 <% end %>
+
+<% unless claim.notes.empty? %>
+  <dt>Notes</dt>
+  <dd>
+  <% claim.notes.each do |note| %>
+    <dl>
+      <dt>Author name:</dt>
+      <dd><%= note.author_name %></dd>
+      <dt>Note text:</dt>
+      <dd><%= note.body_text %></dd>
+      <dt>Date created:</dt>
+      <dd><%= note.created_at %></dd>
+    </dl>
+  <% end %>
+  </dd>
+<% end %>
+</dl>
 
 <%= link_to 'Edit', edit_claim_path(claim) %> |
 <%= link_to 'Show', claim_path(claim) %> | 
 <%= link_to 'Destroy', claim, :confirm => 'Are you sure?', :method => :delete %>
+</div>

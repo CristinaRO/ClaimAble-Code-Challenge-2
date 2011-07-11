@@ -32,7 +32,7 @@
     <%= f.text_field :date_of_loss %>
   </div>
   
-    <% @claim.customers.build %>
+  <% @claim.customers.build %>
   
   <h4>Customers</h4>
   <% @claim.customers.each do |customer| %>
@@ -58,6 +58,24 @@
     <% end %>
   <% end %>
   
+  <% @claim.notes.build %>
+  
+  <h4>Notes</h4>
+  <% @claim.notes.each do |note| %>
+    <%= f.fields_for(:notes, note) do |n| %>
+    <fieldset>
+      <div class="field">
+        <%= n.label :author_name %><br />
+        <%= n.text_field :author_name %>
+      </div>
+      <div class="field">
+        <%= n.label :body_text %><br />
+        <%= n.text_area :body_text, :cols => 30, :rows => 5 %>
+      </div>
+    </fieldset>
+    <% end %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

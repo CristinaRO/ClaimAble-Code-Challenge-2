@@ -14,5 +14,10 @@ class Claim
                           attrs[:customer_name].blank? && attrs[:customer_postcode].blank? &&
                           attrs[:customer_phone].blank? && attrs[:customer_dob].blank?
                         }
+    }
+    
+  embeds_many :notes
+  accepts_nested_attributes_for :notes, {:allow_destroy => true,
+    :reject_if => proc { |attrs| attrs[:author_name].blank? && attrs[:body_text].blank? }
     }  
 end

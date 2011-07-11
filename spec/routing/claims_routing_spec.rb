@@ -30,6 +30,10 @@ describe ClaimsController do
     it "routes to #destroy" do
       delete("/claims/1").should route_to("claims#destroy", :id => "1")
     end
+    
+    it "routes to #index" do
+      get("/").should route_to("claims#index")
+    end
 
   end
 end
